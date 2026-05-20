@@ -1,0 +1,26 @@
+Time resolution is 1 ps
+Time=0| rst=1 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 5 | pedestrian=0 |emergency=0|nightmode=0
+Time=10000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 5 | pedestrian=0 |emergency=0|nightmode=0
+Time=15000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 4 | pedestrian=0 |emergency=0|nightmode=0
+Time=25000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 3 | pedestrian=0 |emergency=0|nightmode=0
+Time=30000| rst=0 | sensor=1 | RED=1 | YELLOW=0| GREEN=0 |timer= 3 | pedestrian=0 |emergency=0|nightmode=0
+Time=35000| rst=0 | sensor=1 | RED=1 | YELLOW=0| GREEN=0 |timer= 2 | pedestrian=0 |emergency=0|nightmode=0
+Time=45000| rst=0 | sensor=1 | RED=1 | YELLOW=0| GREEN=0 |timer= 1 | pedestrian=0 |emergency=0|nightmode=0
+Time=50000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 1 | pedestrian=1 |emergency=0|nightmode=0
+Time=55000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 0 | pedestrian=1 |emergency=0|nightmode=0
+Time=65000| rst=0 | sensor=0 | RED=1 | YELLOW=1| GREEN=0 |timer= 2 | pedestrian=1 |emergency=0|nightmode=0
+Time=75000| rst=0 | sensor=0 | RED=1 | YELLOW=1| GREEN=0 |timer= 1 | pedestrian=1 |emergency=0|nightmode=0
+Time=85000| rst=0 | sensor=0 | RED=1 | YELLOW=1| GREEN=0 |timer= 0 | pedestrian=1 |emergency=0|nightmode=0
+Time=90000| rst=0 | sensor=0 | RED=1 | YELLOW=1| GREEN=0 |timer= 0 | pedestrian=0 |emergency=1|nightmode=0
+Time=95000| rst=0 | sensor=0 | RED=0 | YELLOW=0| GREEN=1 |timer= 5 | pedestrian=0 |emergency=1|nightmode=0
+Time=105000| rst=0 | sensor=0 | RED=0 | YELLOW=0| GREEN=1 |timer= 4 | pedestrian=0 |emergency=1|nightmode=0
+Time=110000| rst=0 | sensor=0 | RED=0 | YELLOW=0| GREEN=1 |timer= 4 | pedestrian=0 |emergency=0|nightmode=1
+Time=115000| rst=0 | sensor=0 | RED=0 | YELLOW=0| GREEN=0 |timer= 0 | pedestrian=0 |emergency=0|nightmode=1
+Time=125000| rst=0 | sensor=0 | RED=0 | YELLOW=1| GREEN=0 |timer= 0 | pedestrian=0 |emergency=0|nightmode=1
+Time=130000| rst=0 | sensor=0 | RED=0 | YELLOW=1| GREEN=0 |timer= 0 | pedestrian=0 |emergency=0|nightmode=0
+Time=135000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 5 | pedestrian=0 |emergency=0|nightmode=0
+Time=145000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 4 | pedestrian=0 |emergency=0|nightmode=0
+Time=155000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 3 | pedestrian=0 |emergency=0|nightmode=0
+Time=165000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 2 | pedestrian=0 |emergency=0|nightmode=0
+Time=175000| rst=0 | sensor=0 | RED=1 | YELLOW=0| GREEN=0 |timer= 1 | pedestrian=0 |emergency=0|nightmode=0
+$finish called at time : 180 ns : File "C:/Users/snehi/OneDrive/Desktop/Traffic_Light_Controller_using_FSM/Traffic_Light_Controller_using_FSM.srcs/sim_1/new/traffic_light_controller_tb.v" Line 55
