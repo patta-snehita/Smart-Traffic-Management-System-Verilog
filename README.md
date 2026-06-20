@@ -1,4 +1,4 @@
-#Smart Traffic Management System (STMS): FSM-Based Adaptive Signal Controller with Emergency Vehicle Priority and Pedestrian Assistance
+##Smart Traffic Management System (STMS): FSM-Based Adaptive Signal Controller with Emergency Vehicle Priority and Pedestrian Assistance
 
 ## Overview
 
