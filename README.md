@@ -1,4 +1,4 @@
-# FSM-Based Smart Traffic Light Controller
+#Smart Traffic Management System (STMS): FSM-Based Adaptive Signal Controller with Emergency Vehicle Priority and Pedestrian Assistance
 
 ## Overview
 
