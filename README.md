@@ -1,170 +1,291 @@
-# Smart Traffic Management System (STMS): FSM-Based Adaptive Signal Controller with Emergency Vehicle Priority and Pedestrian Assistance
+# 🚦 Smart Traffic Management System (STMS)
 
-## Overview
+### FSM-Based Adaptive Traffic Signal Controller with Emergency Vehicle Priority and Pedestrian Assistance
 
-This project implements a Smart Traffic Light Controller using Verilog HDL and Finite State Machine (FSM) design principles. The controller manages traffic flow dynamically by incorporating vehicle detection, pedestrian crossing requests, emergency vehicle priority handling, and night-mode operation.
-
-Unlike conventional fixed-time traffic systems, this design adapts signal timing based on traffic conditions and special operating scenarios, making it suitable for FPGA-based intelligent transportation applications.
-
----
-
-## Features
-
-### Adaptive Traffic Control
-
-* Dynamically adjusts green light duration based on vehicle sensor input.
-* Extends green signal when traffic is detected.
-
-### Pedestrian Crossing Support
-
-* Handles pedestrian crossing requests safely.
-* Provides dedicated pedestrian crossing state.
-
-### Emergency Vehicle Priority
-
-* Immediately prioritizes emergency vehicles.
-* Forces traffic flow to green for rapid clearance.
-
-### Night Mode Operation
-
-* Switches system into blinking yellow mode.
-* Simulates low-traffic nighttime operation.
-
-### Countdown Timer
-
-* Displays remaining time for the active signal state.
-* Improves visibility of state transitions.
-
-### FSM-Based Architecture
-
-* Modular finite state machine implementation.
-* Clear state transitions and timing control.
+![Verilog](https://img.shields.io/badge/Language-Verilog-blue)
+![FSM](https://img.shields.io/badge/Architecture-FSM-green)
+![RTL](https://img.shields.io/badge/Design-RTL-orange)
+![Vivado](https://img.shields.io/badge/Tool-Xilinx%20Vivado-red)
 
 ---
 
-## State Diagram
+## 📌 Project Overview
 
-| State | Description                  |
-| ----- | ---------------------------- |
-| S0    | Red Light                    |
-| S1    | Red + Yellow                 |
-| S2    | Green Light                  |
-| S3    | Yellow Light                 |
-| S4    | Pedestrian Crossing          |
-| S5    | Night Mode (Blinking Yellow) |
+Smart Traffic Management System (STMS) is an intelligent traffic control solution developed using Verilog HDL and Finite State Machine (FSM) architecture. The system dynamically manages traffic signals by considering real-time traffic density, pedestrian crossing requests, emergency vehicle prioritization, and night-mode operation.
+
+Unlike conventional fixed-time traffic controllers, STMS adapts signal timing based on road conditions, improving traffic flow efficiency, reducing congestion, and enhancing road safety.
+
+The project demonstrates practical applications of RTL design, digital control systems, and FPGA-based intelligent transportation solutions.
 
 ---
 
-## Inputs
+## 🎯 Project Objectives
 
-| Signal     | Description                 |
-| ---------- | --------------------------- |
-| clk        | System Clock                |
-| rst        | Asynchronous Reset          |
-| sensor     | Vehicle Detection Sensor    |
-| pedestrian | Pedestrian Crossing Request |
-| emergency  | Emergency Vehicle Detection |
-| nightmode  | Night Mode Enable           |
-
----
-
-## Outputs
-
-| Signal     | Description               |
-| ---------- | ------------------------- |
-| red        | Red Traffic Signal        |
-| yellow     | Yellow Traffic Signal     |
-| green      | Green Traffic Signal      |
-| timer[3:0] | Remaining Countdown Timer |
+| Objective               | Description                                          |
+| ----------------------- | ---------------------------------------------------- |
+| Traffic Optimization    | Improve vehicle flow through adaptive signal timing  |
+| Road Safety             | Support safe pedestrian crossings                    |
+| Emergency Response      | Prioritize emergency vehicles during transit         |
+| Intelligent Control     | Dynamically adjust signal durations                  |
+| Hardware Implementation | Develop a synthesizable RTL-based traffic controller |
 
 ---
 
-## Operating Logic
+## ✨ Key Features
+
+| Feature                       | Description                                        |
+| ----------------------------- | -------------------------------------------------- |
+| 🚗 Vehicle Detection System   | Adjusts signal timing based on traffic conditions  |
+| 🚶 Pedestrian Assistance      | Dedicated pedestrian crossing mode                 |
+| 🚑 Emergency Vehicle Priority | Immediate signal adaptation for emergency vehicles |
+| 🌙 Night Mode Operation       | Blinking yellow signal during low-traffic hours    |
+| ⏳ Countdown Timer             | Displays remaining time for active signals         |
+| 🧠 FSM-Based Controller       | Structured state transitions and traffic control   |
+| 🔄 Dynamic Timing Control     | Adaptive signal duration management                |
+| 🎯 FPGA Ready                 | Synthesizable RTL implementation                   |
+
+---
+
+## 🏗️ System Architecture
+
+```text
+Vehicle Sensor ─────┐
+                    │
+Pedestrian Request ─┼──► FSM Controller ───► Traffic Signals
+                    │
+Emergency Vehicle ──┤
+                    │
+Night Mode ─────────┘
+
+Outputs:
+Red Signal
+Yellow Signal
+Green Signal
+Countdown Timer
+```
+
+The FSM Controller continuously monitors traffic conditions and determines the appropriate signal state based on system priorities.
+
+---
+
+## 🚦 Traffic Signal States
+
+| State | Name                | Function                      |
+| ----- | ------------------- | ----------------------------- |
+| S0    | Red                 | Stops vehicle movement        |
+| S1    | Red + Yellow        | Transition state before green |
+| S2    | Green               | Allows vehicle movement       |
+| S3    | Yellow              | Warning before signal change  |
+| S4    | Pedestrian Crossing | Safe pedestrian passage       |
+| S5    | Night Mode          | Blinking yellow operation     |
+
+---
+
+## 🔄 State Transition Flow
 
 ### Normal Traffic Cycle
 
+```text
 Red → Red+Yellow → Green → Yellow → Red
+```
 
-### Traffic Detection Mode
+### Adaptive Traffic Operation
 
-* If vehicles are detected:
+* Green signal duration changes dynamically.
+* Traffic sensor input influences signal timing.
+* High traffic receives extended green duration.
 
-  * Green light duration extends up to 8 cycles.
-* If no vehicles are detected:
+### Priority Handling
 
-  * Green light remains active for 5 cycles.
+```text
+Emergency Vehicle
+        ↓
+Highest Priority
+        ↓
+Immediate Green Signal
 
-### Pedestrian Mode
-
-* Activated when pedestrian request is received.
-* Traffic signal transitions safely to pedestrian crossing state.
-
-### Emergency Mode
-
-* Emergency vehicles receive highest priority.
-* System immediately transitions to green state.
-
-### Night Mode
-
-* Activated through nightmode input.
-* Controller enters blinking yellow state.
-* Returns to normal operation when night mode is disabled.
+Pedestrian Request
+        ↓
+Safe Transition
+        ↓
+Pedestrian Crossing State
+```
 
 ---
 
-## Design Methodology
+## 📥 Inputs
 
-* Verilog HDL implementation
-* Finite State Machine (FSM) architecture
-* Sequential logic for state storage and counters
-* Combinational logic for state transitions
-* Real-time timing and priority handling
-
----
-
-## Verification
-
-The design was verified through simulation by testing:
-
-* Normal traffic operation
-* Vehicle detection scenarios
-* Pedestrian requests
-* Emergency vehicle prioritization
-* Night mode transitions
-* Timer functionality
-* State transition correctness
+| Signal     | Width | Description                 |
+| ---------- | ----- | --------------------------- |
+| clk        | 1-bit | System Clock                |
+| rst        | 1-bit | Asynchronous Reset          |
+| sensor     | 1-bit | Vehicle Detection Sensor    |
+| pedestrian | 1-bit | Pedestrian Crossing Request |
+| emergency  | 1-bit | Emergency Vehicle Detection |
+| nightmode  | 1-bit | Night Mode Enable           |
 
 ---
 
-## Applications
+## 📤 Outputs
 
-* Smart City Infrastructure
-* Intelligent Transportation Systems (ITS)
-* FPGA-Based Traffic Controllers
-* Embedded Control Systems
-* Digital Logic Design Learning
-* VLSI and RTL Design Projects
-
----
-
-## Technologies Used
-
-* Verilog HDL
-* Finite State Machines (FSM)
-* Digital Logic Design
-* RTL Design
-* FPGA Development Flow
-* Simulation and Verification
+| Signal     | Width | Description               |
+| ---------- | ----- | ------------------------- |
+| red        | 1-bit | Red Traffic Signal        |
+| yellow     | 1-bit | Yellow Traffic Signal     |
+| green      | 1-bit | Green Traffic Signal      |
+| timer[3:0] | 4-bit | Remaining Countdown Timer |
 
 ---
 
-## Key Learning Outcomes
+## ⚙️ Operating Logic
 
-* FSM Design and Optimization
-* Sequential and Combinational Logic Design
+### 🚗 Traffic Detection Mode
+
+| Condition           | Green Signal Duration |
+| ------------------- | --------------------- |
+| Vehicle Detected    | Up to 8 Clock Cycles  |
+| No Vehicle Detected | 5 Clock Cycles        |
+
+The controller intelligently extends the green signal when traffic is present to reduce congestion.
+
+---
+
+### 🚶 Pedestrian Mode
+
+* Activated when a pedestrian request is detected.
+* Traffic flow transitions safely to the pedestrian state.
+* Red signal is maintained for vehicle traffic.
+* Dedicated crossing period is provided.
+
+---
+
+### 🚑 Emergency Mode
+
+* Highest-priority operating mode.
+* Immediately overrides normal traffic operation.
+* Forces traffic clearance by prioritizing green signal transitions.
+
+---
+
+### 🌙 Night Mode
+
+* Activated through the `nightmode` input.
+* Controller enters blinking yellow mode.
+* Used during low-traffic conditions to conserve operational cycles.
+* Returns to normal operation when disabled.
+
+---
+
+## ⏳ Countdown Timer
+
+The integrated timer displays the remaining duration of the active signal.
+
+| State                    | Timer Duration |
+| ------------------------ | -------------- |
+| Red                      | 5 Cycles       |
+| Red + Yellow             | 2 Cycles       |
+| Green (Normal)           | 5 Cycles       |
+| Green (Traffic Detected) | 8 Cycles       |
+| Yellow                   | 2 Cycles       |
+| Pedestrian               | 5 Cycles       |
+
+---
+
+## 🧪 Functional Verification
+
+The design was verified through simulation using Xilinx Vivado.
+
+### Test Scenarios
+
+| Scenario                      | Status |
+| ----------------------------- | ------ |
+| Normal Traffic Operation      | Passed |
+| Vehicle Detection Logic       | Passed |
+| Adaptive Green Timing         | Passed |
+| Pedestrian Requests           | Passed |
+| Emergency Vehicle Priority    | Passed |
+| Night Mode Operation          | Passed |
+| Countdown Timer Functionality | Passed |
+| FSM State Transitions         | Passed |
+
+---
+
+## 📊 Applications
+
+| Application Area       | Use Case                       |
+| ---------------------- | ------------------------------ |
+| Smart Cities           | Intelligent traffic management |
+| Transportation Systems | Adaptive signal control        |
+| Embedded Systems       | Real-time control applications |
+| FPGA Development       | RTL implementation projects    |
+| Academic Research      | FSM and digital system studies |
+
+---
+
+## 🛠️ Technologies Used
+
+| Category           | Tool / Technology                  |
+| ------------------ | ---------------------------------- |
+| HDL                | Verilog HDL                        |
+| Design Methodology | Finite State Machines (FSM)        |
+| Design Style       | RTL Design                         |
+| Simulation         | Xilinx Vivado                      |
+| Domain             | Intelligent Transportation Systems |
+
+---
+
+## 📈 Skills Demonstrated
+
+* RTL Design and Verification
+* Finite State Machine (FSM) Design
 * Traffic Control Algorithms
-* Priority-Based State Transition Systems
-* Verilog RTL Development
-* Hardware-Oriented System Design
+* Priority-Based Control Systems
+* Sequential and Combinational Logic Design
+* Real-Time Decision Making
+* Embedded Control System Development
+* FPGA-Oriented Hardware Design
 
-This project demonstrates the practical application of FSM-based control systems in real-world intelligent traffic management scenarios while showcasing core RTL design and digital system development skills relevant to FPGA and ASIC design flows.
+---
+
+## 🚀 Future Enhancements
+
+| Enhancement                    | Benefit                        |
+| ------------------------------ | ------------------------------ |
+| Traffic Density Sensors        | More accurate traffic control  |
+| Multiple Road Junction Support | Scalable deployment            |
+| AI-Based Traffic Prediction    | Smarter signal optimization    |
+| IoT Integration                | Remote monitoring and control  |
+| FPGA Hardware Deployment       | Real-world implementation      |
+| Smart City Dashboard           | Centralized traffic management |
+
+---
+
+## 🎓 Learning Outcomes
+
+This project provided practical experience in:
+
+✔ FSM-Based Digital System Design
+
+✔ Adaptive Traffic Control Algorithms
+
+✔ Verilog HDL Development
+
+✔ Sequential and Combinational Logic Design
+
+✔ Priority-Based State Machines
+
+✔ Hardware Verification and Debugging
+
+✔ Real-Time Embedded Control Systems
+
+✔ FPGA-Oriented Design Methodology
+
+---
+
+## 👩‍💻 Author
+
+**Patta Snehita**
+| B.Tech, Electrical Engineering
+| National Institute of Technology Durgapur
+
+📌 Interests: RTL Design • FPGA Development • Digital Systems • VLSI Design • Verilog HDL
